@@ -1,0 +1,36 @@
+{
+  "name": "smoren/yii2-dependency-finder",
+  "description": "Extended and more explicit behavior for ActiveRecord classes for Yii2",
+  "type": "yii2-extension",
+  "keywords": ["yii2", "extension", "dependency", "module"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Smoren",
+      "email": "ofigate@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4.0",
+    "yiisoft/yii2": "~2.0.0",
+    "smoren/extended-exceptions": "^1.0.0",
+    "smoren/nested-accessor": "^0.1.0",
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Smoren\\Yii2\\DependencyFinder\\": "src"
+    }
+  },
+  "config": {
+    "fxp-asset": {
+      "enabled": false
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+}
