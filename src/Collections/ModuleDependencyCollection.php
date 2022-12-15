@@ -2,6 +2,8 @@
 
 namespace Smoren\Yii2\DependencyFinder\Collections;
 
+use Generator;
+
 class ModuleDependencyCollection
 {
     /**
@@ -89,5 +91,22 @@ class ModuleDependencyCollection
     public function isEmpty(): bool
     {
         return !count($this->map);
+    }
+
+    /**
+     * @param int $keyOffset
+     * @return Generator<int, string>
+     */
+    public function iterate(int $keyOffset = 0): Generator
+    {
+        foreach($this->getMap() as $fileName => $moduleUsagesMap) {
+            yield $keyOffset => $fileName;
+            foreach($moduleUsagesMap as $depModuleName => $usages) {
+                yield $keyOffset+1 => $depModuleName;
+                foreach($usages as $usage) {
+                    yield $keyOffset+2 => $usage;
+                }
+            }
+        }
     }
 }
