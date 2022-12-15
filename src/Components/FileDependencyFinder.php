@@ -31,9 +31,12 @@ class FileDependencyFinder
             }
         }
         foreach($result as $moduleName => $usages) {
-            $result[$moduleName] = array_unique($usages);
+            $usages = array_unique($usages);
+            sort($usages);
+            $result[$moduleName] = $usages;
         }
 
+        ksort($result);
         return $result;
     }
 }

@@ -24,6 +24,7 @@ class ModuleDependencyFinder
                 $result[$filePath->getRelative()] = $found;
             }
         }
+        ksort($result);
 
         return new ModuleDependencyCollection($result);
     }
