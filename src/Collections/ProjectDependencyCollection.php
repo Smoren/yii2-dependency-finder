@@ -21,6 +21,7 @@ class ProjectDependencyCollection implements CollectionInterface
     }
 
     /**
+     * {@inheritDoc}
      * @return array<string, ModuleDependencyCollection>
      */
     public function getMap(): array
@@ -28,6 +29,10 @@ class ProjectDependencyCollection implements CollectionInterface
         return $this->map;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return array<string, mixed>
+     */
     public function getSummary(): array
     {
         $summary = [];
@@ -42,15 +47,7 @@ class ProjectDependencyCollection implements CollectionInterface
     }
 
     /**
-     * @return string[]
-     */
-    public function getModuleNames(): array
-    {
-        return array_keys($this->map);
-    }
-
-    /**
-     * @return bool
+     * {@inheritDoc}
      */
     public function isEmpty(): bool
     {
@@ -58,7 +55,7 @@ class ProjectDependencyCollection implements CollectionInterface
     }
 
     /**
-     * @param int $keyOffset
+     * {@inheritDoc}
      * @return Generator<int, string>
      */
     public function iterate(int $keyOffset = 0): Generator
@@ -67,5 +64,13 @@ class ProjectDependencyCollection implements CollectionInterface
             yield $keyOffset => $moduleName;
             yield from $moduleDependencyCollection->iterate(1);
         }
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getModuleNames(): array
+    {
+        return array_keys($this->map);
     }
 }

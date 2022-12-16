@@ -8,13 +8,23 @@ use Smoren\Yii2\DependencyFinder\Interfaces\ModuleInterface;
 
 class ModuleDependencyFinder implements FinderInterface
 {
+    /**
+     * @var ModuleInterface
+     */
     protected ModuleInterface $module;
 
+    /**
+     * @param ModuleInterface $module
+     */
     public function __construct(ModuleInterface $module)
     {
         $this->module = $module;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return ModuleDependencyCollection
+     */
     public function find(): ModuleDependencyCollection
     {
         $result = [];

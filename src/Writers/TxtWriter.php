@@ -6,6 +6,9 @@ use Smoren\Yii2\DependencyFinder\Collections\ProjectDependencyCollection;
 
 class TxtWriter extends BaseFileWriter
 {
+    /**
+     * [@inheritDoc]
+     */
     public function write(ProjectDependencyCollection $dependencyCollection): void
     {
         foreach($dependencyCollection->iterate() as $depth => $value) {
@@ -13,6 +16,11 @@ class TxtWriter extends BaseFileWriter
         }
     }
 
+    /**
+     * @param int $offset
+     * @param string ...$values
+     * @return array
+     */
     protected function makeArrayWithOffset(int $offset, string ...$values): array
     {
         $result = array_fill(0, $offset, '');

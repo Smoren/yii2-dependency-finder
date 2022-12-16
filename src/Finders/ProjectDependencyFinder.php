@@ -9,13 +9,22 @@ use Smoren\Yii2\DependencyFinder\Walkers\ProjectModuleWalker;
 
 class ProjectDependencyFinder implements FinderInterface
 {
+    /**
+     * @var PathInterface
+     */
     protected PathInterface $projectPath;
 
+    /**
+     * @param PathInterface $projectPath
+     */
     public function __construct(PathInterface $projectPath)
     {
         $this->projectPath = $projectPath;
     }
 
+    /**
+     * @return ProjectDependencyCollection
+     */
     public function find(): ProjectDependencyCollection
     {
         $result = [];

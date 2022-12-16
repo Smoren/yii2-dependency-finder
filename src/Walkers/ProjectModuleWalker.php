@@ -10,14 +10,21 @@ use Generator;
 
 class ProjectModuleWalker implements WalkerInterface
 {
+    /**
+     * @var PathInterface
+     */
     protected PathInterface $projectDir;
 
+    /**
+     * @param PathInterface $projectDir
+     */
     public function __construct(PathInterface $projectDir)
     {
         $this->projectDir = $projectDir;
     }
 
     /**
+     * {@inheritDoc}
      * @return Generator<Module>
      */
     public function iterate(): Generator

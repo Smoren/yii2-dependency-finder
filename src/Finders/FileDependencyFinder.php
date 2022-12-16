@@ -9,15 +9,29 @@ use Smoren\Yii2\DependencyFinder\Interfaces\PathInterface;
 
 class FileDependencyFinder implements FinderInterface
 {
+    /**
+     * @var PathInterface
+     */
     protected PathInterface $path;
+    /**
+     * @var ModuleInterface
+     */
     protected ModuleInterface $module;
 
+    /**
+     * @param PathInterface $path
+     * @param ModuleInterface $module
+     */
     public function __construct(PathInterface $path, ModuleInterface $module)
     {
         $this->path = $path;
         $this->module = $module;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return array<string, array>
+     */
     public function find(): array
     {
         $fileBody = file_get_contents($this->path->getAbsolute());

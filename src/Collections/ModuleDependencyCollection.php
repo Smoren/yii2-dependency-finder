@@ -21,6 +21,7 @@ class ModuleDependencyCollection implements CollectionInterface
     }
 
     /**
+     * {@inheritDoc}
      * @return array<string, array<string, array<string>>>
      */
     public function getMap(): array
@@ -28,6 +29,10 @@ class ModuleDependencyCollection implements CollectionInterface
         return $this->map;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return array<string, mixed>
+     */
     public function getSummary(): array
     {
         $modules = $this->getModuleNames();
@@ -38,6 +43,31 @@ class ModuleDependencyCollection implements CollectionInterface
             'usages_count' => count($this->getUsages()),
             'map' => $this->map,
         ];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isEmpty(): bool
+    {
+        return !count($this->map);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @return Generator<int, string>
+     */
+    public function iterate(int $keyOffset = 0): Generator
+    {
+        foreach($this->getMap() as $fileName => $moduleUsagesMap) {
+            yield $keyOffset => $fileName;
+            foreach($moduleUsagesMap as $depModuleName => $usages) {
+                yield $keyOffset+1 => $depModuleName;
+                foreach($usages as $usage) {
+                    yield $keyOffset+2 => $usage;
+                }
+            }
+        }
     }
 
     /**
@@ -84,30 +114,5 @@ class ModuleDependencyCollection implements CollectionInterface
         }
 
         return array_values($result);
-    }
-
-    /**
-     * @return bool
-     */
-    public function isEmpty(): bool
-    {
-        return !count($this->map);
-    }
-
-    /**
-     * @param int $keyOffset
-     * @return Generator<int, string>
-     */
-    public function iterate(int $keyOffset = 0): Generator
-    {
-        foreach($this->getMap() as $fileName => $moduleUsagesMap) {
-            yield $keyOffset => $fileName;
-            foreach($moduleUsagesMap as $depModuleName => $usages) {
-                yield $keyOffset+1 => $depModuleName;
-                foreach($usages as $usage) {
-                    yield $keyOffset+2 => $usage;
-                }
-            }
-        }
     }
 }

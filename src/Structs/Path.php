@@ -6,9 +6,19 @@ use Smoren\Yii2\DependencyFinder\Interfaces\PathInterface;
 
 class Path implements PathInterface
 {
+    /**
+     * @var string
+     */
     protected string $rootDirPath;
+    /**
+     * @var string
+     */
     protected string $relativePath;
 
+    /**
+     * @param string $rootDirPath
+     * @param string $relativePath
+     */
     public function __construct(string $rootDirPath, string $relativePath = '')
     {
         $this->rootDirPath = $rootDirPath;
@@ -16,7 +26,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getRootDir(): string
     {
@@ -24,7 +34,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getRelative(): string
     {
@@ -32,7 +42,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getAbsolute(): string
     {
@@ -40,7 +50,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return bool
+     * {@inheritDoc}
      */
     public function isReadable(): bool
     {
@@ -48,7 +58,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return bool
+     * {@inheritDoc}
      */
     public function isDirectory(): bool
     {
@@ -56,7 +66,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return bool
+     * {@inheritDoc}
      */
     public function isFile(): bool
     {
@@ -64,7 +74,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return array<string, string>
+     * {@inheritDoc}
      */
     public function getInfo(): array
     {
@@ -72,8 +82,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @param string $subPath
-     * @return PathInterface
+     * {@inheritDoc}
      */
     public function goDown(string $subPath): PathInterface
     {
@@ -81,7 +90,7 @@ class Path implements PathInterface
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function __toString(): string
     {

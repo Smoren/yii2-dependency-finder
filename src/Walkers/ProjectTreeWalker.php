@@ -9,10 +9,24 @@ use Generator;
 
 class ProjectTreeWalker implements WalkerInterface
 {
+    /**
+     * @var PathInterface|Path
+     */
     protected PathInterface $rootDirPath;
+    /**
+     * @var array|null
+     */
     protected ?array $extensions;
+    /**
+     * @var bool|mixed
+     */
     protected bool $onlyReadable;
 
+    /**
+     * @param string $rootDir
+     * @param array|null $extensions
+     * @param $onlyReadable
+     */
     public function __construct(string $rootDir, ?array $extensions = [], $onlyReadable = false)
     {
         $this->rootDirPath = new Path($rootDir, '');
@@ -21,6 +35,7 @@ class ProjectTreeWalker implements WalkerInterface
     }
 
     /**
+     * [@inheritDoc]
      * @return Generator<string, string>
      */
     public function iterate(): Generator
