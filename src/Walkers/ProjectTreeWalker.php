@@ -1,13 +1,15 @@
 <?php
 
-namespace Smoren\Yii2\DependencyFinder\Components;
+namespace Smoren\Yii2\DependencyFinder\Walkers;
 
+use Smoren\Yii2\DependencyFinder\Interfaces\PathInterface;
+use Smoren\Yii2\DependencyFinder\Interfaces\WalkerInterface;
 use Smoren\Yii2\DependencyFinder\Structs\Path;
 use Generator;
 
-class ProjectTreeWalker
+class ProjectTreeWalker implements WalkerInterface
 {
-    protected Path $rootDirPath;
+    protected PathInterface $rootDirPath;
     protected ?array $extensions;
     protected bool $onlyReadable;
 
@@ -27,10 +29,10 @@ class ProjectTreeWalker
     }
 
     /**
-     * @param Path $dirPath
-     * @return Generator<Path>
+     * @param PathInterface $dirPath
+     * @return Generator<PathInterface>
      */
-    protected function _iterate(Path $dirPath): Generator
+    protected function _iterate(PathInterface $dirPath): Generator
     {
         if($dh = opendir($dirPath->getAbsolute())) {
             while(($fileName = readdir($dh)) !== false) {

@@ -2,7 +2,9 @@
 
 namespace Smoren\Yii2\DependencyFinder\Structs;
 
-class Path
+use Smoren\Yii2\DependencyFinder\Interfaces\PathInterface;
+
+class Path implements PathInterface
 {
     protected string $rootDirPath;
     protected string $relativePath;
@@ -71,9 +73,9 @@ class Path
 
     /**
      * @param string $subPath
-     * @return Path
+     * @return PathInterface
      */
-    public function goDown(string $subPath): Path
+    public function goDown(string $subPath): PathInterface
     {
         return new self($this->rootDirPath, $this->appendToPathString($this->getRelative(), $subPath));
     }

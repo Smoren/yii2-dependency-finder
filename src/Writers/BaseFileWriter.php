@@ -2,8 +2,8 @@
 
 namespace Smoren\Yii2\DependencyFinder\Writers;
 
+use Smoren\Yii2\DependencyFinder\Interfaces\PathInterface;
 use Smoren\Yii2\DependencyFinder\Interfaces\WriterInterface;
-use Smoren\Yii2\DependencyFinder\Structs\Path;
 use Exception;
 
 abstract class BaseFileWriter implements WriterInterface
@@ -14,10 +14,10 @@ abstract class BaseFileWriter implements WriterInterface
     protected $fh;
 
     /**
-     * @param Path $filePath
+     * @param PathInterface $filePath
      * @throws Exception
      */
-    public function __construct(Path $filePath)
+    public function __construct(PathInterface $filePath)
     {
         $this->fh = fopen($filePath->getAbsolute(), 'w');
 

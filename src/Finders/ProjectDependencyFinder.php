@@ -1,15 +1,17 @@
 <?php
 
-namespace Smoren\Yii2\DependencyFinder\Components;
+namespace Smoren\Yii2\DependencyFinder\Finders;
 
 use Smoren\Yii2\DependencyFinder\Collections\ProjectDependencyCollection;
-use Smoren\Yii2\DependencyFinder\Structs\Path;
+use Smoren\Yii2\DependencyFinder\Interfaces\FinderInterface;
+use Smoren\Yii2\DependencyFinder\Interfaces\PathInterface;
+use Smoren\Yii2\DependencyFinder\Walkers\ProjectModuleWalker;
 
-class ProjectDependencyFinder
+class ProjectDependencyFinder implements FinderInterface
 {
-    protected Path $projectPath;
+    protected PathInterface $projectPath;
 
-    public function __construct(Path $projectPath)
+    public function __construct(PathInterface $projectPath)
     {
         $this->projectPath = $projectPath;
     }

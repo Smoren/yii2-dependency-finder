@@ -2,9 +2,10 @@
 
 namespace Smoren\Yii2\DependencyFinder\Collections;
 
+use Smoren\Yii2\DependencyFinder\Interfaces\CollectionInterface;
 use Generator;
 
-class ProjectDependencyCollection
+class ProjectDependencyCollection implements CollectionInterface
 {
     /**
      * @var array<string, ModuleDependencyCollection>

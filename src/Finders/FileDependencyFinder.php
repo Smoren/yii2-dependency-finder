@@ -1,17 +1,18 @@
 <?php
 
-namespace Smoren\Yii2\DependencyFinder\Components;
+namespace Smoren\Yii2\DependencyFinder\Finders;
 
-use Smoren\Yii2\DependencyFinder\Structs\Module;
-use Smoren\Yii2\DependencyFinder\Structs\Path;
 use Smoren\NestedAccessor\Factories\SilentNestedAccessorFactory;
+use Smoren\Yii2\DependencyFinder\Interfaces\FinderInterface;
+use Smoren\Yii2\DependencyFinder\Interfaces\ModuleInterface;
+use Smoren\Yii2\DependencyFinder\Interfaces\PathInterface;
 
-class FileDependencyFinder
+class FileDependencyFinder implements FinderInterface
 {
-    protected Path $path;
-    protected Module $module;
+    protected PathInterface $path;
+    protected ModuleInterface $module;
 
-    public function __construct(Path $path, Module $module)
+    public function __construct(PathInterface $path, ModuleInterface $module)
     {
         $this->path = $path;
         $this->module = $module;

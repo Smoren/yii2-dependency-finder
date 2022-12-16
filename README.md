@@ -9,10 +9,10 @@ composer require smoren/yii2-dependency-finder
 ### Usage
 
 ```php
-use Smoren\Yii2\DependencyFinder\Components\ProjectDependencyFinder;
+use Smoren\Yii2\DependencyFinder\Finders\ProjectDependencyFinder;
+use Smoren\Yii2\DependencyFinder\Structs\Path;
 use Smoren\Yii2\DependencyFinder\Writers\CsvWriter;
 use Smoren\Yii2\DependencyFinder\Writers\TxtWriter;
-use Smoren\Yii2\DependencyFinder\Structs\Path;
 
 $dependencyFinder = new ProjectDependencyFinder(new Path(dirname(__DIR__)));
 $dependencyCollection = $dependencyFinder->find();

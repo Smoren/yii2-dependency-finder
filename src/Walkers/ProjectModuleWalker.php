@@ -1,16 +1,18 @@
 <?php
 
-namespace Smoren\Yii2\DependencyFinder\Components;
+namespace Smoren\Yii2\DependencyFinder\Walkers;
 
+use Smoren\Yii2\DependencyFinder\Interfaces\PathInterface;
+use Smoren\Yii2\DependencyFinder\Interfaces\WalkerInterface;
 use Smoren\Yii2\DependencyFinder\Structs\Module;
 use Smoren\Yii2\DependencyFinder\Structs\Path;
 use Generator;
 
-class ProjectModuleWalker
+class ProjectModuleWalker implements WalkerInterface
 {
-    protected Path $projectDir;
+    protected PathInterface $projectDir;
 
-    public function __construct(Path $projectDir)
+    public function __construct(PathInterface $projectDir)
     {
         $this->projectDir = $projectDir;
     }

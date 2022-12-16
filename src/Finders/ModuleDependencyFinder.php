@@ -1,15 +1,16 @@
 <?php
 
-namespace Smoren\Yii2\DependencyFinder\Components;
+namespace Smoren\Yii2\DependencyFinder\Finders;
 
 use Smoren\Yii2\DependencyFinder\Collections\ModuleDependencyCollection;
-use Smoren\Yii2\DependencyFinder\Structs\Module;
+use Smoren\Yii2\DependencyFinder\Interfaces\FinderInterface;
+use Smoren\Yii2\DependencyFinder\Interfaces\ModuleInterface;
 
-class ModuleDependencyFinder
+class ModuleDependencyFinder implements FinderInterface
 {
-    protected Module $module;
+    protected ModuleInterface $module;
 
-    public function __construct(Module $module)
+    public function __construct(ModuleInterface $module)
     {
         $this->module = $module;
     }
