@@ -4,10 +4,10 @@ namespace Smoren\Yii2\DependencyFinder\Writers;
 
 use Smoren\Yii2\DependencyFinder\Collections\ProjectDependencyCollection;
 
-class TxtWriter extends BaseFileWriter
+class DetailedTxtWriter extends BaseFileWriter
 {
     /**
-     * [@inheritDoc]
+     * {@inheritDoc}
      */
     public function write(ProjectDependencyCollection $dependencyCollection): void
     {

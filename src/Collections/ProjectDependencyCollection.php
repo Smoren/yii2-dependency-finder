@@ -26,7 +26,9 @@ class ProjectDependencyCollection implements CollectionInterface
      */
     public function getMap(): array
     {
-        return $this->map;
+        $map = $this->map;
+        ksort($map);
+        return $map;
     }
 
     /**

@@ -11,17 +11,22 @@ composer require smoren/yii2-dependency-finder
 ```php
 use Smoren\Yii2\DependencyFinder\Finders\ProjectDependencyFinder;
 use Smoren\Yii2\DependencyFinder\Structs\Path;
+use Smoren\Yii2\DependencyFinder\Writers\ShortTxtWriter;
+use Smoren\Yii2\DependencyFinder\Writers\ShortTxtWriter;
+use Smoren\Yii2\DependencyFinder\Writers\DetailedTxtWriter;
 use Smoren\Yii2\DependencyFinder\Writers\CsvWriter;
-use Smoren\Yii2\DependencyFinder\Writers\TxtWriter;
 
 $dependencyFinder = new ProjectDependencyFinder(new Path(dirname(__DIR__)));
 $dependencyCollection = $dependencyFinder->find();
 
 print_r($dependencyCollection->getSummary());
 
-$writer = new CsvWriter(new Path(dirname(__DIR__), 'logs/dependencies.csv'));
+$writer = new ShortTxtWriter(new Path(dirname(__DIR__), 'logs/dependencies_short.txt'));
 $writer->write($dependencyCollection);
 
-$writer = new TxtWriter(new Path(dirname(__DIR__), 'logs/dependencies.txt'));
+$writer = new DetailedTxtWriter(new Path(dirname(__DIR__), 'logs/dependencies_detailed.txt'));
+$writer->write($dependencyCollection);
+
+$writer = new CsvWriter(new Path(dirname(__DIR__), 'logs/dependencies.csv'));
 $writer->write($dependencyCollection);
 ```

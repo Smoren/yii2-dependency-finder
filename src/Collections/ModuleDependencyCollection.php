@@ -26,7 +26,9 @@ class ModuleDependencyCollection implements CollectionInterface
      */
     public function getMap(): array
     {
-        return $this->map;
+        $map = $this->map;
+        ksort($map);
+        return $map;
     }
 
     /**
@@ -41,7 +43,7 @@ class ModuleDependencyCollection implements CollectionInterface
             'modules' => $modules,
             'files_count' => count($this->getFileNames()),
             'usages_count' => count($this->getUsages()),
-            'map' => $this->map,
+            'map' => $this->getMap(),
         ];
     }
 
@@ -77,13 +79,15 @@ class ModuleDependencyCollection implements CollectionInterface
     {
         $result = [];
 
-        foreach($this->map as $fileDependencies) {
+        foreach($this->getMap() as $fileDependencies) {
             foreach($fileDependencies as $moduleName => $usages) {
                 $result[$moduleName] = $moduleName;
             }
         }
 
-        return array_values($result);
+        $result = array_values($result);
+        sort($result);
+        return $result;
     }
 
     /**
@@ -91,7 +95,7 @@ class ModuleDependencyCollection implements CollectionInterface
      */
     public function getFileNames(): array
     {
-        return array_keys($this->map);
+        return array_keys($this->getMap());
     }
 
     /**
@@ -102,7 +106,7 @@ class ModuleDependencyCollection implements CollectionInterface
     {
         $result = [];
 
-        foreach($this->map as $fileDependencies) {
+        foreach($this->getMap() as $fileDependencies) {
             foreach($fileDependencies as $moduleName => $usages) {
                 if($moduleNameOnly !== null && $moduleName !== $moduleNameOnly) {
                     continue;
